@@ -1,5 +1,5 @@
-class reserva {
-    constructor(id, hotel, tipoHabitacion, numHuespedes, fechaInicio, fechaFin, estado){
+export class reserva {
+    constructor(id, hotel, tipoHabitacion, numHuespedes, fechaInicio, fechaFin, estadoDePago){
         this.id = id;
         this.hotel = hotel;
         this.tipoHabitacion = tipoHabitacion; // individual, doble, trilpe, familiar, suite, deluxe
@@ -9,5 +9,3 @@ class reserva {
         this.estadoDePago = estadoDePago; // confirmada, pendiente, cancelada
     }
 }
-
-module.exports = reserva;

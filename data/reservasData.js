@@ -1,2 +1,1 @@
-const reservas = [];
-module.exports = reservas;
+export const reservas = [];
