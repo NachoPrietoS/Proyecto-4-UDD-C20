@@ -47,3 +47,7 @@ Esta clase creada utiliza los siguientes datos
 ## Ejecucion de servidor
 
 Comando: npm run start:dev
+
+## Almacenamiento de datos
+
+Dentro de SRC genero el directorio data y en su interior creo el archivo reservasData.js para almaecnar las reservas creadas.
