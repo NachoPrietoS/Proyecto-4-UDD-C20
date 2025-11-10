@@ -2,6 +2,9 @@ import { reservas } from '../data/reservasData.js';
 import { reserva } from '../models/reservaModelo.js';
 
 
+const buscarReservaPorId = (id) => reservas.find(r => r.id == id);
+
+
 export const crearReserva = (req, res) => {
     try {
         const { hotel, tipoHabitacion, numHuespedes, fechaInicio, fechaFin, estadoDePago } = req.body;
@@ -22,9 +25,9 @@ export const crearReserva = (req, res) => {
 
 export const obtenerReservaPorId = (req, res) => {
     try {
-        const reserva = reservas.find(reservaBuscada => reservaBuscada.id == req.params.id);
-        if (!reserva) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
-        res.json(reserva);
+        const reservaEncontrada = buscarReservaPorId(req.params.id);
+        if (!reservaEncontrada) return res.status(404).json({ mensaje: 'Reserva no encontrada' });
+        res.json(reservaEncontrada);
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al obtener reserva', error });
     }
@@ -45,15 +48,15 @@ export const eliminarReserva = (req, res) => {
 
 export const actualizarReserva = (req, res) => {
     try {
-        const reserva = reservas.find(reservaBuscada => reservaBuscada.id == req.params.id);
-        if (!reserva) {
+        const reservaEncontrada = buscarReservaPorId(req.params.id);
+        if (!reservaEncontrada) {
         return res.status(404).json({ mensaje: 'Reserva no encontrada' });
         }
 
         // Actualiza solo los campos enviados en el body
-        Object.assign(reserva, req.body);
+        Object.assign(reservaEncontrada, req.body);
 
-        res.json(reserva);
+        res.json(reservaEncontrada);
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al actualizar la reserva', error });
     }
