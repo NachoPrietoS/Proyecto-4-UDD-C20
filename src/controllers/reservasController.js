@@ -5,6 +5,11 @@ import { reserva } from '../models/reservaModelo.js';
 export const crearReserva = (req, res) => {
     try {
         const { hotel, tipoHabitacion, numHuespedes, fechaInicio, fechaFin, estadoDePago } = req.body;
+
+        if (!hotel || !tipoHabitacion || !numHuespedes || !fechaInicio || !fechaFin || !estadoDePago) {
+            return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
+        }
+
         const id = reservas.length + 1;
         const nuevaReserva = new reserva(id, hotel, tipoHabitacion, numHuespedes, fechaInicio, fechaFin, estadoDePago);
         reservas.push(nuevaReserva);
